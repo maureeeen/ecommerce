@@ -10,7 +10,7 @@ import { Link,useHistory } from 'react-router-dom';
 const steps =['Shipping address','Payment details'];
 
 const Checkout = ({cart, order,onCaptureCheckout,error}) => {
-    
+
     const [activeStep, setActiveStep]=useState(0);
     const [checkoutToken, setcheckoutToken]= useState(null);
     const[shippingData, setShippingData]=useState({});
@@ -27,7 +27,7 @@ const Checkout = ({cart, order,onCaptureCheckout,error}) => {
                 setcheckoutToken(token);
                 
             } catch (error) {
-                history.pushState('/')
+                history.push('/')
             }
         }
         generateToken();

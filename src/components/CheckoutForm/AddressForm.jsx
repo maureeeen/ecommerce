@@ -7,7 +7,8 @@ import {commerce} from '../../lib/commerce'
 
 import FormInput from './CustomTextField';
 
-const AddressForm = ({checkoutToken, next}) => {
+
+const AddressForm = ({checkoutTokenId, next}) => {
     const [shippingCountries, setShippingCountries] =useState([]);
     const [shippingCountry, setShippingCountry] =useState('');
     const [shippingSubdivisions, setShippingSubdivisions] =useState([]);
@@ -40,10 +41,8 @@ const AddressForm = ({checkoutToken, next}) => {
         setShippingOption(options[0].id);
     }
 
-
         useEffect(()=> {
-        fetchShippingCountries(checkoutToken.Id)
-
+        fetchShippingCountries(checkoutTokenId)
     },[]);
 
     useEffect(()=> {
@@ -51,14 +50,14 @@ const AddressForm = ({checkoutToken, next}) => {
            },[shippingCountry]);
 
            useEffect(()=> {
-            if(shippingSubdivision) fetchShippingOptions(checkoutToken.Id,shippingCountry, shippingSubdivision);
+            if(shippingSubdivision) fetchShippingOptions(checkoutTokenId,shippingCountry, shippingSubdivision);
 
         },[shippingSubdivision]);
 
 
     return (
         <>
-            <Typography variant="h6" gutterBottom>shipping Address</Typography>
+            <Typography variant="h6" gutterbottom>shipping Address</Typography>
             <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit((data)=> next({...data,shippingCountry,shippingSubdivision,shippingOption}))}>
                     <Grid container spacing={3}>
